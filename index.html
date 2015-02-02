@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=0"/> <!--320-->
+
   <title>Magic The Gathering: Life Runs out v 0.0.1 </title>
   <script src="js/underscore-min.js"></script>
   <script src="js/icanhaz.min.js"></script>
@@ -22,11 +24,14 @@
   </script>
 
   <style>
+  @viewport {
+    orientation: portrait;
+  }
+
   body {font-size:24px; background:#000; color:#fefefe;}
   body, h1, input, li, span, div, button { font-family:monospace;}  
   input[type=text],
-  input[type=text]:disabled
-  {
+  input[type=text]:disabled {
 
    -webkit-tap-highlight-color: rgba(0,0,0,0);
     
@@ -73,13 +78,14 @@
     border:0;
   }
 
-  .name:hover,
-  .name:focus {
+  .no-touch .name:hover,
+  .no-touch .name:focus {
     text-shadow:-3px 3px rgba(50,50,50,0.4);        
   }
 
   .life {     
     -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
 
     color:#fafafa;
     margin:1rem 0 0 0;
@@ -89,17 +95,20 @@
     width: 100%;
      text-shadow:-10px 10px rgba(255,255,255,0.2);
   }
-  .life div {    
+  .life > div {    
     cursor:pointer;
-    margin:3rem 6rem; 
-    border:3px solid transparent;
+    margin:3rem 6rem;
   }
-  
-  .life div:hover{
+  .life > div:active, 
+  .life > div:focus,
+  .no-touch .life div:hover {
     color:red;
     text-shadow:-10px 10px rgba(255,200,200,0.2);
-    border:3px solid rgba(255,0,0,0.4);
+  /*  border:3px solid rgba(255,0,0,0.4); */
   }
+
+  .players-3 .life {font-size:6rem;}
+  .players-3 .life > div { margin:2rem 0 ;}
 
 /*  .life::before{
     content:'-1';
@@ -128,14 +137,14 @@
     text-align: left;
 
     box-sizing: border-box;
-    
+
     outline:0;
     cursor:pointer;
 
     transition:all 0.3s ease-out; 
   }
-  
-  button:hover {
+  button:active, button:focus
+  .no-touch button:hover {
     border-color:white;
     transition:all 0.3s ease-out; 
   }
@@ -148,53 +157,32 @@
     line-height: 2rem;
     width: auto;
   }
-
-  button.go:hover {border-color:#aaa; font-size:2rem;}
+  button.go:focus,
+  button.go:active
+  .no-touch button.go:hover {border-color:#aaa; font-size:2rem;}
+  
   .player button {
     width:auto;margin:0 0.5rem 0 1rem;
   }
-  .player button:hover {  }
+  
 
-  .player button.down:hover {
+  .no-touch .player button:hover {  }
+
+  /*.player button.down:focus,*/
+  .player button.down:active,
+  .no-touch .player button.down:hover {
     background:rgb(230,40,60);
     color:#fafafa;
     box-shadow:-10px 8px rgba(255,200,200,0.2);        
   }
 
-  .player button.up:hover {
+  /*.player button.up:focus, */
+  .player button.up:active,
+  .no-touch .player button.up:hover {
     background:rgb(60,230,40);
     color:#fafafa;
     box-shadow:-10px 8px rgba(200,255,200,0.2);    
     
-    transition:all 0.3s ease-out; 
-  }
-
-  .more {
-    position: absolute;
-    top:0px;
-    right:0px;
-    height:30%;
-    background:rgba(255,255,255,0.5);
-    text-align: center;
-    outline:0;
-
-    box-sizing: border-box;
-    transition:all 0.5s ease-out;
-    /*animated properties*/
-    padding: 0.2rem;
-    font-size:1rem;
-    line-height:100%;
-  }
-
-  .more:hover {
-    /*animated properties*/
-    background:rgba(0,0,0,0.5);
-    height:100%;
-    line-height:4rem;
-    font-size:2rem;
-    padding:1rem;
-    width:40%;
-
     transition:all 0.3s ease-out; 
   }
 
@@ -209,7 +197,9 @@
     width:48%;
     margin:0 0 6rem 0;
   }
-
+  
+  .players-3 .player { width:98%; margin: 0 0 2rem 0;}
+  
   .poisons { 
     width:50%;
     box-sizing: border-box;
@@ -219,27 +209,24 @@
   .poisons button{font-size:80%;}
 
 
-
   @media screen and (min-width: 640px)  {
     
-    .player {}
+    .players-3 .player { width:30%;}
+    .players-3 .player button {
+      font-size:2rem; 
+      margin: 0 .2rem 0 .2rem;
+      line-height: 150%;
+    }
 
+
+    
     .life {font-size:12rem;}
 
     .name {}
     button {border-width:1rem;}
-    .more {
-      padding:0.4rem 0.4rem 1.5rem 0.4rem;
-      font-size:1rem;
-      line-height:100%;
-    }
-
-    .more:hover {
-      /*padding:1rem;*/
-      font-size:1.2rem;
-      line-height: 150%;
-    }
+   
   }
+
 
   @media screen and (min-width: 920px)  {
     
@@ -252,29 +239,18 @@
       line-height: 6rem;
     }
 
-    .more {
-      padding: 0.3rem 1rem 1.5rem  1rem;
-      /*font-size:1.2rem;*/
-      line-height:100%;
-    }
+
   }
 
 
   @media screen and (min-width: 1280px)  {
     
-    .player {width:49%;}
     .life {font-size:16rem;}
-    .name {}
-
+    
     button {
       font-size:6rem;
       line-height: 8rem;
     }
-
-    .more {
-      padding:0.8rem 0.8rem 3.5rem 0.8rem; font-size:2rem; line-height: 150%;
-    }
-    .more:hover {padding:2rem; font-size:3rem; line-height: 4rem;}
    
   }
 

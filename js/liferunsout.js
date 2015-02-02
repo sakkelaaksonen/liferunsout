@@ -1,11 +1,19 @@
  //Main module
   var LifeRunsOut = (function(){
 
-
-
     //generic closured helpers
     function selectInputValue(e) {
       e.target.select();
+    }
+
+    function classNameforPlayers(playerCount) {
+      return [
+      'root',
+      ' ',
+      'players-',
+       playerCount
+      ].join('');
+
     }
 
     //Player model/view
@@ -59,22 +67,17 @@
 
         dom.querySelector('#'+this.id+'-up-more')
           .addEventListener('touchend',function(event){
-            event.stopPropagation();
-            event.stopImmediatePropagation();
             player.up(5);
           },false);
 
         dom.querySelector('#'+this.id+'-down-more')
           .addEventListener('touchend',function(event){
-            event.stopPropagation();
-            event.stopImmediatePropagation();
             player.down(5);
         },false);
 
         dom.querySelector('#'+this.id+'-life')
           .addEventListener('touchend',function(event){
             player.down();
-            event.target.blur();
           },false);
 
 
@@ -89,8 +92,6 @@
         },false)
          
         namefield.addEventListener('focus',selectInputValue,false);
-
-
       
       }
     };
@@ -102,7 +103,7 @@
         window.addEventListener('DOMContentLoaded',this.load,false);
       },
       load:function loadApplication() {
-        
+
         this.playersDom().innerHTML = '';
         this.players = {};
 
@@ -116,6 +117,9 @@
 
         var life = parseInt(document.querySelector('#playerLife').value,10);
         var list = document.createElement('ul');
+        
+        document.querySelector('#app').className = classNameforPlayers(playerCount); 
+
         var range = _.range(1,playerCount+1)
         _(range).each(function(n){
           var player = new Player(playerName(n),life);
@@ -146,8 +150,6 @@
         return document.querySelector('#players');
       },
       destroy:function endOfLife() {
-        //hmmm...
-        // this = null;
       }
     }).bindAll('init','load');
 
