@@ -28,7 +28,12 @@
     orientation: portrait;
   }
 
-  body {font-size:24px; background:#000; color:#fefefe;}
+  body {
+    height:100%;
+    font-size:24px; background:#000; color:#fefefe;
+    background: #000 url(img/bg1.jpg) no-repeat fixed 50% 50%;
+    background-size: 100% 100%;
+  }
   body, h1, input, li, span, div, button { font-family:monospace;}  
   input[type=text],
   input[type=text]:disabled {
@@ -132,7 +137,7 @@
     
     color:#444;
     font-size:2rem;
-    line-height: 4rem;
+    line-height: 3rem;
     text-shadow:#ccc 3px 3px 3px 5px;
     text-align: left;
 
@@ -199,6 +204,11 @@
   }
   
   .players-3 .player { width:98%; margin: 0 0 2rem 0;}
+  .players-3 .player button {
+      font-size:1.3rem; 
+      margin: 0 .1rem 0 .1rem;
+      line-height: 120%;
+    }
   
   .poisons { 
     width:50%;
@@ -212,14 +222,7 @@
   @media screen and (min-width: 640px)  {
     
     .players-3 .player { width:30%;}
-    .players-3 .player button {
-      font-size:2rem; 
-      margin: 0 .2rem 0 .2rem;
-      line-height: 150%;
-    }
-
-
-    
+   
     .life {font-size:12rem;}
 
     .name {}
