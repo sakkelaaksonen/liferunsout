@@ -1,0 +1,274 @@
+@viewport {
+  orientation: portrait;
+}
+body {
+  height: 100%;
+  font-size: 24px;
+  background: #000;
+  color: #fefefe;
+  background: #000 url(../img/bg1.jpg) no-repeat fixed;
+  background-size: cover;
+}
+body,
+h1,
+input,
+li,
+span,
+div,
+button {
+  font-family: monospace;
+}
+input[type=text],
+input[type=text]:disabled {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  background: inherit;
+  display: inline-block;
+  box-sizing: border-box;
+  color: #fafafa;
+  outline: 0;
+  padding: 3px 0;
+}
+input[type=text]:focus,
+input[type=text]:hover {
+  background: #fafafa;
+  color: #666;
+}
+h1 {
+  text-align: left;
+  text-shadow: -3px 3px rgba(255, 200, 200, 0.2);
+}
+h1 span {
+  font-size: 1.4rem;
+  display: block;
+}
+h1 input {
+  display: inline;
+  padding: 1rem;
+  max-width: 5rem;
+  text-align: center;
+  font-size: 2rem;
+  border: 3px solid rgba(255, 255, 255, 0.8);
+}
+h1 button {
+}
+
+/* Players grid */
+.players {
+}
+.players ul {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+.player {
+  flex-grow: 1;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 0 2rem 0;
+}
+
+/* h1 go -button in button styles */
+.name {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  text-shadow: -3px 3px rgba(255, 200, 200, 0.2);
+  font-size: 3rem;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  width: 98%;
+  border: 0;
+}
+.no-touch .name:hover,
+.no-touch .name:focus {
+  text-shadow: -3px 3px rgba(50, 50, 50, 0.4);
+}
+.life {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+  color: #fafafa;
+  margin: 1rem 0 0 0;
+  font-size: 8rem;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  text-shadow: -10px 10px rgba(255, 255, 255, 0.2);
+}
+.life > div {
+  cursor: pointer;
+  margin: 3rem 6rem;
+}
+.life > div:active,
+.life > div:focus,
+.no-touch .life div:hover {
+  color: red;
+  text-shadow: -10px 10px rgba(255, 200, 200, 0.2);
+  /* border: 3px solid rgba(255, 0, 0, 0.4);
+  */
+}
+.players-3 .life > div {
+  font-size: 3rem;
+  margin: 1rem 3rem;
+}
+.player-3 .buttons {
+  /* font-size:;
+  */
+}
+.players-3 .life > div {
+}
+
+/* .life::before {
+  content: '-1';
+  display: block;
+  position: absolute;
+  right: 3rem;
+  font-size: 4rem;
+  color: white;
+  height: 30px;
+  width: 20px;
+  border: 10px solid blue;
+}
+*/
+button {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  border: 0.5rem solid #e0e0e0;
+  border-radius: 1rem;
+  box-shadow: -10px 8px rgba(255, 255, 255, 0.2);
+  background: white;
+  color: #444;
+  font-size: 2rem;
+  line-height: 3rem;
+  text-shadow: #ccc 3px 3px 3px 5px;
+  text-align: left;
+  box-sizing: border-box;
+  outline: 0;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+button:active,
+button:focus
+.no-touch button:hover {
+  border-color: white;
+  transition: all 0.3s ease-out;
+}
+button.go {
+  margin: 2rem 0 0 0;
+  padding: 0 3rem;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 2rem;
+  width: auto;
+}
+button.go:focus,
+button.go:active
+.no-touch button.go:hover {
+  border-color: #aaa;
+  font-size: 2rem;
+}
+.player button {
+  width: auto;
+  margin: 0 0.5rem 0 1rem;
+}
+.no-touch .player button:hover {
+}
+
+/* .player button.down:focus, */
+.player button.down:active,
+.no-touch .player button.down:hover {
+  background: rgb(230, 40, 60);
+  color: #fafafa;
+  box-shadow: -10px 8px rgba(255, 200, 200, 0.2);
+}
+
+/* .player button.up:focus, */
+.player button.up:active,
+.no-touch .player button.up:hover {
+  background: rgb(60, 230, 40);
+  color: #fafafa;
+  box-shadow: -10px 8px rgba(200, 255, 200, 0.2);
+  transition: all 0.3s ease-out;
+}
+.buttons {
+  text-align: center;
+}
+.players-3 .player button {
+  font-size: 1.3rem;
+  margin: 0 .1rem 0 .1rem;
+  line-height: 120%;
+}
+.players-3 .name {
+  font-size: 1.2rem;
+  line-height: 2rem;
+}
+.poisons {
+  width: 50%;
+  box-sizing: border-box;
+}
+.poisons input,
+.poisons button {
+  font-size: 80%;
+}
+@media screen and (min-width:640px) {
+  .players-3 .player {
+    width: 30%;
+  }
+  .life {
+    font-size: 12rem;
+  }
+  .name {
+  }
+  button {
+    border-width: 1rem;
+  }
+  .players-3 .player button {
+    border-width: .3rem;
+    border-radius: 5px;
+  }
+  h1 {
+    width: 80%;
+    margin: 0 auto;
+  }
+  h1 span {
+    font-size: 1.4rem;
+    display: inline;
+  }
+  h1 button {
+  }
+}
+@media screen and (min-width:920px) {
+  .player {
+    width: 50%;
+  }
+  .life {
+    font-size: 12rem;
+  }
+  .name {
+  }
+  button {
+    font-size: 2.8rem;
+    line-height: 4rem;
+    padding: 0 .5rem;
+  }
+  .players-3 .life > div {
+    font-size: 12rem;
+  }
+  .players-3 .player button {
+    font-size: 2.6rem;
+    line-height: 3.8rem;
+    border-width: .5rem;
+    border-radius: 1rem;
+  }
+}
+@media screen and (min-width:1280px) {
+  .life {
+    font-size: 16rem;
+  }
+  button {
+    font-size: 6rem;
+    line-height: 8rem;
+  }
+}
