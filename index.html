@@ -7,19 +7,21 @@
     <title>Magic The Gathering: Life Runs out v 0.0.1 </title>
     <link rel="stylesheet" href="css/app.css" />
     <link rel="manifest" href="manifest.json">
-
   </head>
   <body>
     <div id="app" class="root">
       <div id="menu">
-        Game On:
-        <span>
-          <input id="numOfPlayers" type="text" value="2"> players, </span>
-          <span><input id="playerLife" type="text" value="20"> life </span>
-          <span class="button-wrapper">
-            <button class="go" id="go">Go</button>
+        <div class="menublock">
+          Game On:
+          <span>
+            <input id="numOfPlayers" type="text" value="2"> players, </span>
+            <span><input id="playerLife" type="text" value="20"> life </span>
+            <span class="button-wrapper">
+              <button class="go" id="go">Go</button>
+            </span>
           </span>
-        </span>
+        </div>
+        <div id="showmenu"></div>
       </div>
       <div class="players" id="players">
         <!-- here be players: ul > li.players*n -->

@@ -14,7 +14,7 @@ var LifeRunsOut = (function() {
       ' ',
       'players-',
       playerCount,
-      (playerCount >= 3 ? ' small-players' :'' )
+      (playerCount >= 3 ? ' small-players' : '')
     ].join('');
   }
 
@@ -27,7 +27,8 @@ var LifeRunsOut = (function() {
   var Player = function(name, life, poisons, render) {
 
     this.name = name || 'player1';
-    this.id = this.name.replace(/w/, '_').toLowerCase();
+    this.id = this.name.replace(/w/, '_')
+      .toLowerCase();
     this.life = parseInt(life, 10) || 20; //TODO eval this properly
     this.poisons = poisons || 0;
 
@@ -58,10 +59,12 @@ var LifeRunsOut = (function() {
     },
     render: function renderPlayerDOM() {
 
-      this.dom().querySelector('#' + this.id + '-life')
+      this.dom()
+        .querySelector('#' + this.id + '-life')
         .innerHTML = this.life;
 
-      this.dom().querySelector('#' + this.id + '-name')
+      this.dom()
+        .querySelector('#' + this.id + '-name')
         .value = this.name;
     },
     bind: function() {
@@ -105,61 +108,89 @@ var LifeRunsOut = (function() {
 
   //return main app module
   return _({
-    players: {},
-    init: function() {
-      window.addEventListener('DOMContentLoaded', this.load, false);
-    },
-    load: function loadApplication() {
+      players: {},
+      init: function initLifeRunsOut() {
+        window.addEventListener('DOMContentLoaded', this.load, false);
+      },
+      startGame: function startNewGameScore() {
 
-      this.playersDom().innerHTML = '';
-      this.players = {};
+        this.load();
+        this.menu()
+          .classList.add('gameon')
+        return this;
+      },
+      toggleMenu: function toggleTopMenu(event) {
+        this.menu()
+          .classList.toggle('show');
 
-      var playerCount = parseInt(
-        document.querySelector('#numOfPlayers').value,
-        10);
+        event.target.classList.toggle('open');
 
-      var life = parseInt(document.querySelector('#playerLife').value, 10);
-      var list = document.createElement('ul');
+        // .querySelector('#showmenu')
+      },
+      load: function loadApplication() {
 
-      document.querySelector('#app').className = classNameforPlayers(playerCount);
+        this.playersDom()
+          .innerHTML = '';
+        this.players = {};
 
-      var range = _.range(1, playerCount + 1)
-      _(range).each(function createPlayer(n) {
-        var player = new Player(defaultPlayerName(n), life);
-        this.players[player.id] = player;
-      }, this);
+        var playerCount = parseInt(
+          document.querySelector('#numOfPlayers')
+          .value,
+          10);
 
-      list.innerHTML =
-        ich.players({
-          players: _.values(this.players)
-        })
+        var life = parseInt(document.querySelector('#playerLife')
+          .value, 10);
+        var list = document.createElement('ul');
 
-      this.playersDom().appendChild(list);
-      _.each(this.players, function bindPlayer(player) {
-        player.bind();
-      });
+        document.querySelector('#app')
+          .className = classNameforPlayers(playerCount);
 
-      window.scrollTo(0,document.body.scrollHeight);
+        var range = _.range(1, playerCount + 1)
+        _(range)
+          .each(function createPlayer(n) {
+            var player = new Player(defaultPlayerName(n), life);
+            this.players[player.id] = player;
+          }, this);
 
-      document.querySelector('#go')
-        .addEventListener('click', this.load, false)
+        list.innerHTML =
+          ich.players({
+            players: _.values(this.players)
+          })
 
-      document.querySelector('#numOfPlayers')
-        .addEventListener('focus', selectInputValue, false);
+        this.playersDom()
+          .appendChild(list);
+        _.each(this.players, function bindPlayer(player) {
+          player.bind();
+        });
 
-      document.querySelector('#playerLife')
-        .addEventListener('focus', selectInputValue, false);
+        window.scrollTo(0, document.body.scrollHeight);
 
-      console.log('done');
-    },
-    dom: function getDomNodeDorApp() {
-      return document.querySelector('#app');
-    },
-    playersDom: function getDomNodeForPlayers() {
-      return document.querySelector('#players');
-    },
-    destroy: function endOfLife() {}
-  }).bindAll('init', 'load');
+        document.querySelector('#go')
+          .addEventListener('click', this.startGame, false)
+
+        document.querySelector('#showmenu')
+          .addEventListener('click', this.toggleMenu, false)
+
+        document.querySelector('#numOfPlayers')
+          .addEventListener('focus', selectInputValue, false);
+
+        document.querySelector('#playerLife')
+          .addEventListener('focus', selectInputValue, false);
+
+        console.log('done');
+      },
+      dom: function getDomNodeforApp() {
+        return document.querySelector('#app');
+      },
+      menu: function getDomeNodeForMenu() {
+        return document.querySelector('#menu');
+      },
+      playersDom: function getDomNodeForPlayers() {
+        return document.querySelector('#players');
+      },
+      destroy: function endOfLife() {}
+    })
+    .bindAll('init', 'load', 'startGame', 'toggleMenu');
 
 })();
 //Run when loaded
