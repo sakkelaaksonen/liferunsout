@@ -8,11 +8,13 @@ var LifeRunsOut = (function() {
   }
 
   function classNameforPlayers(playerCount) {
+    // todo remove this. Do it with CSS quantity selectors
     return [
       'root',
       ' ',
       'players-',
-      playerCount
+      playerCount,
+      (playerCount >= 3 ? ' small-players' :'' )
     ].join('');
   }
 
@@ -136,6 +138,8 @@ var LifeRunsOut = (function() {
       _.each(this.players, function bindPlayer(player) {
         player.bind();
       });
+
+      window.scrollTo(0,document.body.scrollHeight);
 
       document.querySelector('#go')
         .addEventListener('click', this.load, false)

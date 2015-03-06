@@ -9,49 +9,49 @@ body {
   background: #000 url(../img/bg1.jpg) no-repeat fixed;
   background-size: cover;
 }
-body,
-h1,
-input,
-li,
-span,
-div,
-button {
+body, h1, input, li, span, div, button {
   font-family: monospace;
 }
-input[type=text],
-input[type=text]:disabled {
+input[type=text], input[type=text]:disabled {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  background: inherit;
-  display: inline-block;
+  background: inherit;  /*display: inline-block;*/
   box-sizing: border-box;
   color: #fafafa;
   outline: 0;
   padding: 3px 0;
 }
-input[type=text]:focus,
+input[type=text]:focus, 
 input[type=text]:hover {
-  background: #fafafa;
+  background: rgba(255,255,255,0.95);
   color: #666;
+  border-color:rgba(255,240,240,.5);
 }
-h1 {
+#menu {
+  min-height:6rem;
+  background: rgb(255,255,255,0.3);
+  /*text-align: center;*/
   text-align: left;
   text-shadow: -3px 3px rgba(255, 200, 200, 0.2);
 }
-h1 span {
+#menu span {
   font-size: 1.4rem;
-  display: block;
+  display: inline-block;
 }
-h1 input {
+#menu input {
   display: inline;
   padding: 1rem;
   max-width: 5rem;
   text-align: center;
   font-size: 2rem;
-  border: 3px solid rgba(255, 255, 255, 0.8);
+  border-width:3px;
+  border-style: solid;
 }
-h1 button {
+#menu button {}
+.button-wrapper {
+  display: block;
+  text-align: center;
+  width: 100%;
 }
-
 /* Players grid */
 .players {
   margin: 2rem 0 0 0;
@@ -65,15 +65,17 @@ h1 button {
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
+  list-style: :none;
 }
 .player {
   flex-grow: 1;
   box-sizing: border-box;
   width: 100%;
   margin: 0 0 2rem 0;
+  list-style: :none;
 }
 
-/* h1 go -button in button styles */
+/*menu go -button in button styles */
 .name {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   text-shadow: -3px 3px rgba(255, 200, 200, 0.2);
@@ -82,13 +84,15 @@ h1 button {
   display: block;
   margin: 0 auto;
   width: 98%;
-  border: 0;
+  max-width: 400px;
+  border: 3px transparent;
+  display: block;
 }
-.players-3 .name {
+.small-players .name {
   font-size: 1.2rem;
   line-height: 2rem;
 }
-.no-touch .name:hover,
+.no-touch .name:hover, 
 .no-touch .name:focus {
   text-shadow: -3px 3px rgba(50, 50, 50, 0.4);
 }
@@ -106,24 +110,42 @@ h1 button {
 .life > div {
   cursor: pointer;
   margin: 3rem 6rem;
+  border: 0 transparent;
+  border-radius: 6rem;
+  transition: background 0.4s ease-in;
+  transition: color 0.1s ease-in-out;
+
 }
 .life > div:active,
 .life > div:focus,
 .no-touch .life div:hover {
   color: red;
-  text-shadow: -10px 10px rgba(255, 200, 200, 0.2);
-  /* border: 3px solid rgba(255, 0, 0, 0.4);
-  */
+  text-shadow: -10px
+  10px rgba(255, 200, 200, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  transition: background 0.1s ease-in-out;
+  transition: color 0.1s ease-in-out;
+  transition: text-shadow 0.3s ease-in-out;
+
+
+    /* border: 3px solid rgba(255, 0, 0, 0.4);
+    */
 }
-.players-3 .life > div {
+.life > div:active,
+.life > div:focus {
+  background: rgba(155, 155, 155, 0.3);
+  transition: background 0.1s ease-out;
+}
+.small-players .life > div {
   font-size: 3rem;
   margin: 1rem 3rem;
 }
 .player-3 .buttons {
+
   /* font-size:;
   */
 }
-.players-3 .life > div {
+.small-players .life > div {
 }
 
 /* .life::before {
@@ -154,22 +176,21 @@ button {
   cursor: pointer;
   transition: all 0.3s ease-out;
 }
-button:active,
-button:focus
+button:active, button:focus
 .no-touch button:hover {
   border-color: white;
   transition: all 0.3s ease-out;
 }
 button.go {
-  margin: 2rem 0 0 0;
+  margin: 1rem 0;
   padding: 0 3rem;
   text-align: center;
-  font-size: 1rem;
+  font-size: 2rem;
   line-height: 2rem;
   width: auto;
 }
-button.go:focus,
-button.go:active
+button.go:focus, 
+button.go:active,
 .no-touch button.go:hover {
   border-color: #aaa;
   font-size: 2rem;
@@ -182,16 +203,14 @@ button.go:active
 }
 
 /* .player button.down:focus, */
-.player button.down:active,
-.no-touch .player button.down:hover {
+.player button.down:active, .no-touch .player button.down:hover {
   background: rgb(230, 40, 60);
   color: #fafafa;
   box-shadow: -10px 8px rgba(255, 200, 200, 0.2);
 }
 
 /* .player button.up:focus, */
-.player button.up:active,
-.no-touch .player button.up:hover {
+.player button.up:active, .no-touch .player button.up:hover {
   background: rgb(60, 230, 40);
   color: #fafafa;
   box-shadow: -10px 8px rgba(200, 255, 200, 0.2);
@@ -200,7 +219,7 @@ button.go:active
 .buttons {
   text-align: center;
 }
-.players-3 .player button {
+.small-players .player button {
   font-size: 1.3rem;
   margin: 0 .1rem 0 .1rem;
   line-height: 120%;
@@ -209,12 +228,14 @@ button.go:active
   width: 50%;
   box-sizing: border-box;
 }
-.poisons input,
-.poisons button {
+.poisons input, .poisons button {
   font-size: 80%;
 }
 @media screen and (min-width:640px) {
-  .players-3 .player {
+  #menu {
+    text-align: center;
+  }
+  .small-players .player {
     width: 30%;
   }
   .life {
@@ -225,23 +246,24 @@ button.go:active
   button {
     border-width: 1rem;
   }
-  .players-3 .name {
+  .small-players .name {
     font-size: 2.2rem;
     line-height: 3rem;
   }
-  .players-3 .player button {
+  .small-players .player button {
     border-width: .3rem;
     border-radius: 5px;
   }
-  h1 {
+  #menu {
+    /*line-height: 3.5rem;*/
     width: 80%;
     margin: 0 auto;
-  }
-  h1 span {
+      }
+  #menu span {
     font-size: 1.4rem;
     display: inline;
   }
-  h1 button {
+  #menu button {
   }
 }
 @media screen and (min-width:920px) {
@@ -258,10 +280,10 @@ button.go:active
     line-height: 4rem;
     padding: 0 .5rem;
   }
-  .players-3 .life > div {
+  .small-players .life > div {
     font-size: 12rem;
   }
-  .players-3 .player button {
+  .small-players .player button {
     font-size: 2.6rem;
     line-height: 3.8rem;
     border-width: .5rem;

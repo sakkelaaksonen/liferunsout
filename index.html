@@ -6,16 +6,21 @@
     <meta name="viewport" content="user-scalable=0"/> <!--320-->
     <title>Magic The Gathering: Life Runs out v 0.0.1 </title>
     <link rel="stylesheet" href="css/app.css" />
+    <link rel="manifest" href="manifest.json">
+
   </head>
   <body>
     <div id="app" class="root">
-      <h1>Game On:
-      <span>
-      <input id="numOfPlayers" type="text" value="2"> players, </span>
-      <span><input id="playerLife" type="text" value="20"> life </span>
-      <button class="go" id="go">Go</button>
-      </span>
-      </h1>
+      <div id="menu">
+        Game On:
+        <span>
+          <input id="numOfPlayers" type="text" value="2"> players, </span>
+          <span><input id="playerLife" type="text" value="20"> life </span>
+          <span class="button-wrapper">
+            <button class="go" id="go">Go</button>
+          </span>
+        </span>
+      </div>
       <div class="players" id="players">
         <!-- here be players: ul > li.players*n -->
       </div>
@@ -34,11 +39,11 @@
         <button class="down five"id="{{id}}-down-more">-5</button>
         <button class="up one" id="{{id}}-up">+1</button>
         <button class="up five" id="{{id}}-up-more">+5</button>
-      <div>
-    </li>
-    {{/players}}
-    </script>
-    <script src="js/FastActive.min.js"></script>
-    <script src="js/liferunsout.js"></script>
-  </body>
-</html>
+        <div>
+        </li>
+        {{/players}}
+        </script>
+        <script src="js/FastActive.min.js"></script>
+        <script src="js/liferunsout.js"></script>
+      </body>
+    </html>
