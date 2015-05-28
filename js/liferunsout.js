@@ -54,6 +54,11 @@ var LifeRunsOut = (function() {
       return this.life;
       //or return this?
     },
+    setLife: function(life_amount) {
+      this.life = life_amount;
+      this.render();
+      return this.life;
+    },
     dom: function getPlayerDOMRoot() {
       return document.querySelector('#' + this.id);
     },
@@ -110,11 +115,12 @@ var LifeRunsOut = (function() {
   return _({
       players: {},
       init: function initLifeRunsOut() {
+        this.running = true;
         window.addEventListener('DOMContentLoaded', this.load, false);
       },
       startGame: function startNewGameScore() {
 
-        this.load();
+        this.reset();
         this.menu()
           .classList.add('gameon')
         return this;
@@ -127,6 +133,13 @@ var LifeRunsOut = (function() {
 
         // .querySelector('#showmenu')
       },
+      reset: function() {
+        _.each(this.players, function(player) {
+          console.log(player);
+          player.setLife(20);
+        });
+      },
+
       load: function loadApplication() {
 
         this.playersDom()
